@@ -14,9 +14,7 @@ const Form = () => {
   const createNote = async (e) => {
     e.preventDefault()
     setShow(true)
-    console.log('Snippet submitted:', note)
     setIsSubmitting(true);
-    console.log(note.description);
     try {
       const response = await fetch("/api/notes/new", {
         method: "POST",
@@ -27,7 +25,7 @@ const Form = () => {
           tag: note.tag,
         }),
       });
-
+      setNote({title: "", description: "", tag: ""})
       if (response.ok) {
         router.push("/");
       }
@@ -40,15 +38,23 @@ const Form = () => {
   
 
   const handleClick=()=>{
-    setShow(true)
+    if(session?.user){
+      console.log(show)
+      setShow(false)
+    }
   }
 
   const onChange = (e)=>{
     setNote({...note, [e.target.name]: e.target.value})
 }
+const toggleShow = () => {
+  setShow(!show);
+  setNote({title: "", description: "", tag: ""})
+};
+
   return (
     <>
-      <div onClick={() => setShow(false)} className=' w-full px-5 py-3 text-sm bg-white border border-gray-300 shadow-lg rounded-md text-black'>
+      <div onClick={handleClick} className=' w-full px-5 py-3 text-sm bg-white border border-gray-300 shadow-lg rounded-md text-black'>
         
         {show ? <p className='text-[1.1rem]'>Take a note...</p> : 
         (
@@ -58,7 +64,8 @@ const Form = () => {
                 
               >
                 <p className='font-semibold text-lg text-gray-700'>Add Note</p>
-                <p className='hover:cursor-pointer w-3' onClick={handleClick}>x</p>
+                <form onSubmit={toggleShow}><button className='hover:cursor-pointer w-3'>x</button></form>
+                
           </div>
           <form onSubmit={createNote}>
             <input 
