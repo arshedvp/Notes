@@ -129,14 +129,14 @@
 
 /* Form Component */
 .form_input{
-  @apply w-full flex rounded-lg h-[30px] mt-2 p-3 text-sm border border-gray-400 text-gray-500;
+  @apply w-full flex rounded-lg h-[30px] mt-2 p-3 text-lg  text-black outline-0;
 }
 .form_textarea {
-  @apply w-full flex rounded-lg h-[70px] mt-2 px-3 py-2 text-sm border border-gray-400 text-gray-500 outline-0;
+  @apply w-full flex rounded-lg h-[70px] mt-2 px-3 py-2 text-sm  text-gray-500 outline-0;
 }
 
 .form_tag {
-  @apply w-1/4 flex rounded-lg h-[30px] mt-2 p-3 text-sm border border-gray-400 text-gray-500 outline-0;
+  @apply w-1/4 flex rounded-lg h-[30px] mt-2 p-3 text-sm  text-gray-500 outline-0;
 }
 
 /* Nav Component */
